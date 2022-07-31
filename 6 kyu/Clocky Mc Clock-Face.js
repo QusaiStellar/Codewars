@@ -35,8 +35,8 @@ Do not make any AM or PM assumptions for the HH:MM result. They are indistinguis
 */
 
 const whatTimeIsIt = (angle) => {
-   const hh = Math.trunc(angle / 30);
-   const mm = Math.ceil((angle / 30) * 100 % 1 * 60 / 100);
+   const hh = Math.floor(angle * 2 / 60);
+   const mm = Math.floor(angle * 2 % 60);
    let hours = hh;
    let minutes = mm;
 
@@ -53,9 +53,10 @@ const whatTimeIsIt = (angle) => {
    if (hh === 0) {
       hours = 12;
    }
-   console.log((angle / 30).toPrecision(2));
+   console.log(((angle / 30) % 1 * 100));
+   console.log(mm);
 
    return `${hours}:${minutes}`;
 };
 
-console.log(whatTimeIsIt(50));
+console.log(whatTimeIsIt(199.6521341535901));
